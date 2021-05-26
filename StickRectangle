@@ -1,0 +1,48 @@
+//Import the Scanner class
+import java.util.*;
+
+public class SticksRectangle {
+    public static void main(String[] args) {
+        //Create Scanner object
+        Scanner sc = new Scanner(System.in);
+
+        //Input the number of test cases
+        int T = sc.nextInt();
+
+        //Loop till the test cases
+        for(int i=0; i<T; i++) {
+            //Input the array size
+            int n = sc.nextInt();
+
+            //Declare the array of integers
+            int[] arr = new int[n];
+
+            //Input the array elements
+            for(int j=0; j<n; j++) {
+                arr[j] = sc.nextInt();
+            }
+
+            //Sort the array
+            Arrays.sort(arr);
+
+            int count = 0, res = 1;
+
+            //If the two neighbouring values are equal then it can form one side of the rectangle
+            for(int j=0; j<n-1; j++) {
+                if(arr[j] == arr[j+1]) {
+                    count++;
+                    res *= arr[j];
+                    j++;
+                }
+            }
+
+            //If we get two different length of sticks then we can form a rectangle
+            if(count == 2)
+                System.out.println(res);
+            else
+                System.out.println("-1");
+        }
+
+        sc.close();
+    }
+}
